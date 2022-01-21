@@ -2,8 +2,7 @@ import React, { useState } from "react";
 const initialHook = {
   hook_image: null,
   size: "",
-/*   size_name:'',
- */};
+};
 
 let url = "hooks/";
 

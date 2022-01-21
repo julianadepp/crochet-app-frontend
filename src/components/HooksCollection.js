@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 //     sizeName: '',
 // }
 
-function HooksCollection({hooks, setHooks}) {
+function HooksCollection({hooks, setHooks, setCurrentId, currentId}) {
   const url = process.env.REACT_APP_API;
   useEffect(() => {
     fetch(url + "hooks/")
@@ -20,12 +20,20 @@ function HooksCollection({hooks, setHooks}) {
       );
   }, []);
   console.log(hooks);
+  console.log('current', currentId)
+
+  function getId(e){
+       setCurrentId(e.currentTarget.id)
+      /* console.log(currentId) */
+      console.log(e.currentTarget.id)
+  }
+
   return (
     <div>
       <h2>Hooks</h2>
       {hooks.map((hook) => {
         return (
-          <div>
+          <div id={hook.id} onClick={getId} >
             <a href=''>
                 <h3>{hook.size_name}</h3>
                 <img width='100px' src={hook.hook_image} alt="hook"></img>
