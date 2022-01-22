@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useState } from "react/cjs/react.development";
+import HookUpdateForm from "./HookUpdateForm";
 
-function HookInfo({ currentId }) {
+function HookInfo({ currentId, setCurrentId}) {
+    const [currentlyEditing, setCurrentlyEditing] = useState(false)
   const [thisHook, setThisHook] = useState({
     id: "",
     size: "",
@@ -21,9 +23,21 @@ function HookInfo({ currentId }) {
   function deleteHook() {
     fetch(process.env.REACT_APP_API + "hooks/" + thisHook.id, {
       method: "DELETE",
-    }).then((res) => console.log(res.status));
+    }).then((res) =>{ 
+        (res.status === 204)? setCurrentId(null):
+        console.log(res.status)});
   }
-  function editHook() {}
+  function handleEditClick(){
+      setCurrentlyEditing(!currentlyEditing)
+  }
+  console.log(currentlyEditing)
+  function editHook() {
+    fetch(process.env.REACT_APP_API + "hooks/" + thisHook.id, {
+        method: "PUT",
+      }).then((res) =>{ 
+          (res.status === 204)? setCurrentId(null):
+          console.log(res.status)});
+  }
 
   return (
     <div>
@@ -44,8 +58,9 @@ function HookInfo({ currentId }) {
               </li>
             ))}
           </ul>
-          <button>edit</button>
+          <button onClick={handleEditClick} >edit</button>
           <button onClick={deleteHook}>delete</button>
+          {(currentlyEditing) ? <HookUpdateForm setThisHook={setThisHook} thisHook={thisHook}/> :null }
         </div>
       ) : (
         <h3>Click a hook to see more info!</h3>

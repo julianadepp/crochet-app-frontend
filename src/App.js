@@ -21,7 +21,7 @@ function App() {
       <PatternCollection className="horizontal-scroll-bar"/>
 
       <div>
-        <HookInfo currentId={currentId}/>
+        <HookInfo currentId={currentId} setCurrentId={setCurrentId} />
         <NewHookForm hooks={hooks} currentId={currentId} setHooks={setHooks} />
       </div>
     </div>

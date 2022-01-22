@@ -21,10 +21,10 @@ function YarnCollection(props) {
       {yarns.map((yarn) => {
         return (
           <div>
-            <a href="">
+            {/* <a href=""> */}
               <h3>{yarn.nickname}</h3>
               <img width="100px" src={yarn.yarn_image} alt="yarn"></img>
-            </a>
+            {/* </a> */}
           </div>
         );
       })}

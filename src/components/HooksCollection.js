@@ -24,7 +24,6 @@ function HooksCollection({hooks, setHooks, setCurrentId, currentId}) {
 
   function getId(e){
        setCurrentId(e.currentTarget.id)
-      /* console.log(currentId) */
       console.log(e.currentTarget.id)
   }
 
@@ -34,10 +33,10 @@ function HooksCollection({hooks, setHooks, setCurrentId, currentId}) {
       {hooks.map((hook) => {
         return (
           <div id={hook.id} onClick={getId} >
-            <a href=''>
+            {/* <a href=''> */}
                 <h3>{hook.size_name}</h3>
                 <img width='100px' src={hook.hook_image} alt="hook"></img>
-            </a>
+            {/* </a> */}
           </div>
         );
       })}

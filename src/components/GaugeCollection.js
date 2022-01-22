@@ -20,10 +20,10 @@ function GaugeCollection(props) {
       {gauges.map((gauge) => {
         return (
           <div>
-            <a href="">
+            {/* <a href=""> */}
               <h3>{gauge.title}</h3>
               <img width="100px" src={gauge.gauge_image} alt="gauge"></img>
-            </a>
+            {/* </a> */}
           </div>
         );
       })}            

@@ -1,10 +1,4 @@
 import React, { useState } from "react";
-const initialHook = {
-  hook_image: null,
-  size: "",
-};
-
-let url = "hooks/";
 
 const metricChoices = [
   { value: 1, label: ".75 mm" },
@@ -46,39 +40,19 @@ const metricChoices = [
   { value: 37, label: "19 mm" },
   { value: 38, label: "25 mm" },
 ];
-const usChoices = [
-  { value: 15, label: "Size B/1" },
-  { value: 17, label: "Size C/2" },
-  { value: 19, label: "Size D/3" },
-  { value: 20, label: "Size E/4" },
-  { value: 21, label: "Size F/5" },
-  { value: 22, label: "Size G/6" },
-  { value: 24, label: "Size 7" },
-  { value: 25, label: "Size H/8" },
-  { value: 26, label: "Size I/9" },
-  { value: 27, label: "Size J/10" },
-  { value: 28, label: "Size K/10.5" },
-  { value: 31, label: "Size L/11" },
-  { value: 32, label: "Size M/13" },
-  { value: 33, label: "Size N/15" },
-  { value: 35, label: "Size P" },
-  { value: 36, label: "Size Q" },
-  { value: 37, label: "Size S" },
-  { value: 38, label: "Size U" },
-];
-const hookChoices = [{ Metric: metricChoices }, { US: usChoices }];
 
-function NewHookForm({ hooks, setHooks }) {
-  const options = {
-    method: "POST",
-  };
+function HookUpdateForm({ thisHook, setThisHook }) {
+  const [hookForm, setHookForm] = useState(thisHook);
+  const [imageFile, setImageFile] = useState({});
   const [errors, setErrors] = useState({});
-  const [hookForm, setHookForm] = useState(initialHook);
-  const [imageFile, setImageFile] = useState({})
-  const [submitted, setSubmitted] = useState(false)
+  const [submitted, setSubmitted] = useState(false);
 
   function handleChange(e) {
-    setHookForm({ ...hookForm, [e.target.name]: e.target.value, /* size_name: e.target.selectedOptions[0].innerText */ });
+    setHookForm({
+      ...hookForm,
+      [e.target.name]:
+        e.target.value /* size_name: e.target.selectedOptions[0].innerText */,
+    });
     console.log(e.target.selectedOptions[0].innerText);
   }
   function handleImage(e) {
@@ -88,14 +62,18 @@ function NewHookForm({ hooks, setHooks }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(imageFile.hook_image)
+    console.log(imageFile.hook_image);
     console.log(hookForm);
     let formdata = new FormData();
-    formdata.append('hook_image', imageFile.hook_image, imageFile.hook_image.name)
-    formdata.append('size', hookForm.size)
+    formdata.append(
+      "hook_image",
+      imageFile.hook_image,
+      imageFile.hook_image.name
+    );
+    formdata.append("size", hookForm.size);
 
-    fetch(process.env.REACT_APP_API + url, {
-      ...options,
+    fetch(process.env.REACT_APP_API + "hooks/" + thisHook.id, {
+      method: "PUT",
       body: formdata,
     })
       .then((res) => {
@@ -113,14 +91,15 @@ function NewHookForm({ hooks, setHooks }) {
       })
       .then((json) => {
         if (!("errors" in json)) {
-            setHooks((hooks) => [...hooks, json]) 
-            setSubmitted(true)};
-      }); 
+          setThisHook(json);
+          setSubmitted(true);
+        }
+      });
   }
 
   return (
     <div>
-      <h2>Add a New Hook</h2>
+      <h2>Update Hook</h2>
       <form onSubmit={handleSubmit}>
         <label>
           image of hook
@@ -131,21 +110,21 @@ function NewHookForm({ hooks, setHooks }) {
             name="hook_image"
             id="hook_image"
           ></input>
-        </label>{" "}
+        </label>
         <br />
         <label>
           hook size
-          <select name="size" onChange={handleChange}>
+          <select name="size" value={hookForm.size} onChange={handleChange}>
             {metricChoices.map((choice) => (
               <option value={choice.value}>{choice.label}</option>
             ))}
           </select>
         </label>
-        <button>sumbit</button>
-        {(submitted)?<p>success!</p>:<p>something went wrong...</p>}
+        <button>Update</button>
+        {submitted ? <p>success!</p> : <p>click update!!</p>}
       </form>
     </div>
   );
 }
 
-export default NewHookForm;
+export default HookUpdateForm;

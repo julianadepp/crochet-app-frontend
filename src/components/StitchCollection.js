@@ -20,10 +20,10 @@ function StitchCollection(props) {
       {stitches.map((stitch) => {
         return (
           <div>
-            <a href="">
+            {/* <a href=""> */}
               <h3>{stitch.name}</h3>
               <img width="100px" src={stitch.stitch_image} alt="stitch"></img>
-            </a>
+            {/* </a> */}
           </div>
         );
       })}

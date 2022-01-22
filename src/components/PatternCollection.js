@@ -20,10 +20,10 @@ function PatternCollection(props) {
       {patterns.map((pattern) => {
         return (
           <div>
-            <a href="">
+            {/* <a href=""> */}
               <h3>{pattern.name}</h3>
               <img width="100px" src={pattern.pattern_image} alt="pattern"></img>
-            </a>
+            {/* </a> */}
           </div>
         );
       })}
