@@ -5,7 +5,7 @@ import { useState, useEffect } from "react/cjs/react.development";
 import NewYarnForm from "./NewYarnForm";
 import YarnInfo from "./YarnInfo";
 
-function YarnCollection({showYarnInfo, setShowYarnInfo, hooks}) {
+function YarnCollection({yarns, setYarns, showYarnInfo, setShowYarnInfo, hooks}) {
   const initYarn = {
     id: "",
     nickname: "",
@@ -17,7 +17,6 @@ function YarnCollection({showYarnInfo, setShowYarnInfo, hooks}) {
     notes: '',
     suggested_hooks: [],
   };
-  const [yarns, setYarns] = useState([]);
   const [thisYarn, setThisYarn] = useState(initYarn);
   const url = process.env.REACT_APP_API;
     useEffect(() => {

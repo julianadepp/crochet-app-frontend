@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import NewStitchForm from './NewStitchForm';
 import StitchInfo from './StitchInfo';
 
-function StitchCollection({ showStitchInfo, setShowStitchInfo }) {
+function StitchCollection({ stitches, setStitches, showStitchInfo, setShowStitchInfo }) {
   const initStitch = {
     id: "",
     name: "",
@@ -15,7 +15,6 @@ function StitchCollection({ showStitchInfo, setShowStitchInfo }) {
     notes: "",
     related_stitches: [],
   };
-    const [stitches, setStitches] = useState([]);
     const [thisStitch, setThisStitch] = useState(initStitch);
 
     const url = process.env.REACT_APP_API;

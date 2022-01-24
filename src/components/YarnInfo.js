@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import YarnUpdateForm from "./YarnUpdateForm";
 
 function YarnInfo({ thisYarn, setThisYarn, hooks }) {
-    console.log(hooks)
+  console.log(hooks);
   const [currentlyEditing, setCurrentlyEditing] = useState(false);
   const initYarn = {
     id: "",
