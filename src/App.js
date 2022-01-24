@@ -13,14 +13,16 @@ function App() {
 
   const [showInfo, setShowInfo] = useState(false)
   const [showYarnInfo, setShowYarnInfo] =useState(false)
+  const [showStitchInfo, setShowStitchInfo] =useState(false)
+  const [showGaugeInfo, setShowGaugeInfo] =useState(false)
   console.log(showInfo)
   return (
     <div className="App">
-      <Nav setShowInfo={setShowInfo} setShowYarnInfo={setShowYarnInfo}/>
+      <Nav setShowInfo={setShowInfo} setShowYarnInfo={setShowYarnInfo} setShowStitchInfo={setShowStitchInfo}/>
         <Route path="/hooks" render={() => <HooksCollection showInfo={showInfo} setHooks={setHooks} hooks={hooks} setShowInfo={setShowInfo} />}/>
         <Route path="/yarns" render={() => <YarnCollection showYarnInfo={showYarnInfo} setShowYarnInfo={setShowYarnInfo} setHooks={setHooks} hooks={hooks} />}/>
-        <Route path="/stitches" render={() => <StitchCollection />}/>
-        <Route path="/gauges" render={() => <GaugeCollection />}/>
+        <Route path="/stitches" render={() => <StitchCollection showStitchInfo={showStitchInfo} setShowStitchInfo={setShowStitchInfo} />}/>
+        <Route path="/gauges" render={() => <GaugeCollection showGaugeInfo={showGaugeInfo} setShowGaugeInfo={setShowGaugeInfo} />}/>
         <Route path="/patterns" render={() => <PatternCollection />}/>
     </div>
   );

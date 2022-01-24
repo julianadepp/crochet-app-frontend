@@ -41,7 +41,7 @@ const metricChoices = [
   { value: 38, label: "25 mm" },
 ];
 
-function HookUpdateForm({ thisHook, setThisHook, setCurrentId }) {
+function HookUpdateForm({ thisHook, setThisHook, }) {
   const [hookForm, setHookForm] = useState(thisHook);
   const [imageFile, setImageFile] = useState({});
   const [errors, setErrors] = useState({});

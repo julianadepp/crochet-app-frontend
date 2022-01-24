@@ -37,7 +37,7 @@ function HookInfo({ setThisHook, thisHook, }) {
 
   // function editHook() {
   //   fetch(process.env.REACT_APP_API + "hooks/" + thisHook.id, {
-  //       method: "PUT",
+  //       method: "PATCH",
   //     }).then((res) =>{ 
   //         (res.status === 204)? setCurrentId(null):
   //         console.log(res.status)});
