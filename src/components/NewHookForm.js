@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 const initialHook = {
   hook_image: null,
   size: "",
@@ -68,7 +69,7 @@ const usChoices = [
 ];
 const hookChoices = [{ Metric: metricChoices }, { US: usChoices }];
 
-function NewHookForm({ hooks, setHooks }) {
+function NewHookForm({ setHooks, thisHook, setThisHook, setShowInfo }) {
   const options = {
     method: "POST",
   };
@@ -76,7 +77,7 @@ function NewHookForm({ hooks, setHooks }) {
   const [hookForm, setHookForm] = useState(initialHook);
   const [imageFile, setImageFile] = useState({})
   const [submitted, setSubmitted] = useState(false)
-
+console.log(submitted, thisHook.id)
   function handleChange(e) {
     setHookForm({ ...hookForm, [e.target.name]: e.target.value, /* size_name: e.target.selectedOptions[0].innerText */ });
     console.log(e.target.selectedOptions[0].innerText);
@@ -113,11 +114,13 @@ function NewHookForm({ hooks, setHooks }) {
       })
       .then((json) => {
         if (!("errors" in json)) {
-            setHooks((hooks) => [...hooks, json]) 
+            console.log(json.id)
+            setHooks((hooks) => [...hooks, json])
+            setThisHook(json)
+            setShowInfo(true)
             setSubmitted(true)};
       }); 
   }
-
   return (
     <div>
       <h2>Add a New Hook</h2>
@@ -141,11 +144,10 @@ function NewHookForm({ hooks, setHooks }) {
             ))}
           </select>
         </label>
-        <button>sumbit</button>
-        {(submitted)?<p>success!</p>:<p>something went wrong...</p>}
+        <button>submit</button>
+        {(submitted && thisHook.id !== '')? <Redirect to={`/hooks/${thisHook.id}`} />:<p>press submit to see your new hook!</p>}
       </form>
     </div>
   );
 }
-
 export default NewHookForm;

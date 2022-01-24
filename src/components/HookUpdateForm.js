@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const metricChoices = [
   { value: 1, label: ".75 mm" },
@@ -41,7 +41,7 @@ const metricChoices = [
   { value: 38, label: "25 mm" },
 ];
 
-function HookUpdateForm({ thisHook, setThisHook }) {
+function HookUpdateForm({ thisHook, setThisHook, setCurrentId }) {
   const [hookForm, setHookForm] = useState(thisHook);
   const [imageFile, setImageFile] = useState({});
   const [errors, setErrors] = useState({});
@@ -53,7 +53,6 @@ function HookUpdateForm({ thisHook, setThisHook }) {
       [e.target.name]:
         e.target.value /* size_name: e.target.selectedOptions[0].innerText */,
     });
-    console.log(e.target.selectedOptions[0].innerText);
   }
   function handleImage(e) {
     setImageFile({ [e.target.name]: e.target.files[0] });
@@ -62,18 +61,17 @@ function HookUpdateForm({ thisHook, setThisHook }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(imageFile.hook_image);
+    console.log(imageFile);
     console.log(hookForm);
     let formdata = new FormData();
-    formdata.append(
-      "hook_image",
-      imageFile.hook_image,
-      imageFile.hook_image.name
-    );
     formdata.append("size", hookForm.size);
-
+    if(imageFile.hook_image){formdata.append(
+        "hook_image",
+        imageFile.hook_image,
+    )}
+    
     fetch(process.env.REACT_APP_API + "hooks/" + thisHook.id, {
-      method: "PUT",
+      method: "PATCH",
       body: formdata,
     })
       .then((res) => {
@@ -85,16 +83,19 @@ function HookUpdateForm({ thisHook, setThisHook }) {
           return json.then((err) => {
             const errors = { errors: err, status: res.status };
             setErrors(errors);
+            console.log(errors)
             return errors;
           });
         }
       })
       .then((json) => {
         if (!("errors" in json)) {
+            console.log(imageFile)
           setThisHook(json);
           setSubmitted(true);
+        }else{console.log(imageFile, e.target.files);
         }
-      });
+      })
   }
 
   return (
