@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/crochet-app-frontend/static/css/main.692d4b69.css",
+    "main.js": "/crochet-app-frontend/static/js/main.c3a4601f.js",
+    "static/js/787.c0aadc67.chunk.js": "/crochet-app-frontend/static/js/787.c0aadc67.chunk.js",
+    "index.html": "/crochet-app-frontend/index.html",
+    "main.692d4b69.css.map": "/crochet-app-frontend/static/css/main.692d4b69.css.map",
+    "main.c3a4601f.js.map": "/crochet-app-frontend/static/js/main.c3a4601f.js.map",
+    "787.c0aadc67.chunk.js.map": "/crochet-app-frontend/static/js/787.c0aadc67.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.692d4b69.css",
+    "static/js/main.c3a4601f.js"
+  ]
+}
