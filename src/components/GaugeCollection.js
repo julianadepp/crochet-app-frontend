@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import Flickity from 'react-flickity-component';
 import { Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import '../flickity/flickity.css'
 import GaugeInfo from './GaugeInfo';
 import NewGaugeForm from './NewGaugeForm';
 
@@ -37,20 +39,29 @@ function GaugeCollection({yarns, stitches, hooks, gauges, setGauges, showGaugeIn
     setShowGaugeInfo(true);
     console.log(e.currentTarget.id, "clicked gauge:", thisGauge);
   }
+  const flickityOptions={
+    wrapAround: true,
+    initialIndex:2,
+    imagesLoaded:true,
+  }
 
     return (
-        <div>
-      <h2>Gauges</h2>
-      {gauges.map((gauge) => {
-        return (
-          <div id={gauge.id} onClick={getId}>
-            <Link to={`/gauges/${gauge.id}`}>
-              <h3>{gauge.title}</h3>
-              <img width="100px" src={gauge.gauge_image} alt="gauge"></img>
-              </Link>
-          </div>
-        );
-      })}
+        <div className="bar">
+      <h2 className="barTitle">Gauges</h2>
+      <div className="carousel">
+        <Flickity options={flickityOptions} >
+        {gauges.map((gauge) => {
+          return (
+            <div id={gauge.id} onClick={getId} className="barItem">
+              <Link to={`/gauges/${gauge.id}`}>
+                <h3 className="barItemTitle">{gauge.title}</h3>
+                <div className="thumbnailWrapper"><img className="barThumbnail" src={gauge.gauge_image} alt="gauge"></img></div>
+                </Link>
+            </div>
+          );
+        })}
+        </ Flickity>
+      </div>
       <div>
         {showGaugeInfo ? (
           <Route

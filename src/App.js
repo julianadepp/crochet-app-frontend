@@ -31,61 +31,98 @@ function App() {
           setShowGaugeInfo={setShowGaugeInfo}
         />
       </div>
-      {/* <Route
-        exact path="/"
-        render={() => (
-          <Home
-            showInfo={showInfo}
-            setShowInfo={setShowInfo}
-            showYarnInfo={showYarnInfo}
-            setShowYarnInfo={setShowYarnInfo}
-            showStitchInfo={showStitchInfo}
-            setShowStitchInfo={setShowStitchInfo}
-            showGaugeInfo={showGaugeInfo}
-            setShowGaugeInfo={setShowGaugeInfo}
-            showPatternInfo={showPatternInfo}
-            setShowPatternInfo={setShowPatternInfo}
-          />
-        )}
-      /> */}
-      <HooksCollection
-        showInfo={showInfo}
-        setHooks={setHooks}
-        hooks={hooks}
-        setShowInfo={setShowInfo}
-      />
-      <YarnCollection
-        yarns={yarns}
-        setYarns={setYarns}
-        showYarnInfo={showYarnInfo}
-        setShowYarnInfo={setShowYarnInfo}
-        hooks={hooks}
-      />
-      <StitchCollection
-        stitches={stitches}
-        setStitches={setStitches}
-        showStitchInfo={showStitchInfo}
-        setShowStitchInfo={setShowStitchInfo}
-      />
-      <GaugeCollection
-        hooks={hooks}
-        yarns={yarns}
-        stitches={stitches}
-        showGaugeInfo={showGaugeInfo}
-        setShowGaugeInfo={setShowGaugeInfo}
-        gauges={gauges}
-        setGauges={setGauges}
-        patterns={patterns}
-        setPatterns={setPatterns}
-      />
-      <PatternCollection
-        setShowPatternInfo={setShowPatternInfo}
-        showPatternInfo={showPatternInfo}
-        gauges={gauges}
-        setGauges={setGauges}
-        patterns={patterns}
-        setPatterns={setPatterns}
-      />
+      <div>
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <Home
+              showInfo={showInfo}
+              setShowInfo={setShowInfo}
+              setShowYarnInfo={setShowYarnInfo}
+              setShowStitchInfo={setShowStitchInfo}
+              setShowGaugeInfo={setShowGaugeInfo}
+              gauges={gauges}
+              setGauges={setGauges}
+              patterns={patterns}
+              setPatterns={setPatterns}
+              hooks={hooks}
+              yarns={yarns}
+              stitches={stitches}
+              setHooks={setHooks}
+              setYarns={setYarns}
+              setStitches={setStitches}
+              showYarnInfo={showYarnInfo}
+              showStitchInfo={showStitchInfo}
+              showGaugeInfo={showGaugeInfo}
+              showPatternInfo={showPatternInfo}
+            />
+          )}
+        />
+        <Route
+          path="/hooks"
+          render={() => (
+            <HooksCollection
+              showInfo={showInfo}
+              setHooks={setHooks}
+              hooks={hooks}
+              setShowInfo={setShowInfo}
+            />
+          )}
+        />
+        <Route
+          path="/yarns"
+          render={() => (
+            <YarnCollection
+              yarns={yarns}
+              setYarns={setYarns}
+              showYarnInfo={showYarnInfo}
+              setShowYarnInfo={setShowYarnInfo}
+              hooks={hooks}
+            />
+          )}
+        />
+        <Route
+          path="/stitches"
+          render={() => (
+            <StitchCollection
+              stitches={stitches}
+              setStitches={setStitches}
+              showStitchInfo={showStitchInfo}
+              setShowStitchInfo={setShowStitchInfo}
+            />
+          )}
+        />
+        <Route
+          path="/gauges"
+          render={() => (
+            <GaugeCollection
+              hooks={hooks}
+              yarns={yarns}
+              stitches={stitches}
+              showGaugeInfo={showGaugeInfo}
+              setShowGaugeInfo={setShowGaugeInfo}
+              gauges={gauges}
+              setGauges={setGauges}
+              patterns={patterns}
+              setPatterns={setPatterns}
+            />
+          )}
+        />
+        <Route
+          path="/patterns"
+          render={() => (
+            <PatternCollection
+              setShowPatternInfo={setShowPatternInfo}
+              showPatternInfo={showPatternInfo}
+              gauges={gauges}
+              setGauges={setGauges}
+              patterns={patterns}
+              setPatterns={setPatterns}
+            />
+          )}
+        />
+      </div>
     </div>
   );
 }

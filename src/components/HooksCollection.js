@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Route } from "react-router-dom/cjs/react-router-dom.min";
+import "../flickity/flickity.css";
 import HookInfo from "./HookInfo";
 import NewHookForm from "./NewHookForm";
+import Flickity from "react-flickity-component";
 
 function HooksCollection({ hooks, setHooks, showInfo, setShowInfo }) {
   const initHook = {
@@ -32,41 +34,57 @@ function HooksCollection({ hooks, setHooks, showInfo, setShowInfo }) {
     setShowInfo(true);
     console.log(e.currentTarget.id, "clickedhook:", thisHook);
   }
-
+  const flickityOptions = {
+    wrapAround: true,
+    initialIndex: 2,
+    imagesLoaded: true,
+  };
   return (
     <div>
-      <h2>Hooks </h2>
-      {hooks.map((hook) => {
-        return (
-          <div id={hook.id} onClick={getId}>
-            <Link to={`/hooks/${hook.id}`}>
-              <h3>{hook.size_name}</h3>
-              <img width="100px" src={hook.hook_image} alt="hook"></img>
-            </Link>
-          </div>
-        );
-      })}
-      <div>
-        {showInfo ? (
+      <div className="bar">
+        <h2 className="barTitle">Hooks </h2>
+        <div className="carousel">
+          <Flickity options={flickityOptions}>
+            {hooks.map((hook) => {
+              return (
+                <div id={hook.id} onClick={getId} className="barItem">
+                  <Link to={`/hooks/${hook.id}`}>
+                    <h3 className="barItemTitle">{hook.size_name}</h3>
+                    <div className="thumbnailWrapper">
+                      <img
+                        className="barThumbnail"
+                        src={hook.hook_image}
+                        alt="hook"
+                      ></img>
+                    </div>
+                  </Link>
+                </div>
+              );
+            })}
+          </Flickity>
+        </div>
+      </div>
+        <div>
+          {showInfo ? (
+            <Route
+              path="/hooks/:id"
+              render={() => (
+                <HookInfo thisHook={thisHook} setThisHook={setThisHook} />
+              )}
+            />
+          ) : null}
           <Route
-            path="/hooks/:id"
+            path="/hooks/new"
             render={() => (
-              <HookInfo thisHook={thisHook} setThisHook={setThisHook} />
+              <NewHookForm
+                thisHook={thisHook}
+                setThisHook={setThisHook}
+                hooks={hooks}
+                setHooks={setHooks}
+                setShowInfo={setShowInfo}
+              />
             )}
           />
-        ) : null}
-        <Route
-          path="/hooks/new"
-          render={() => (
-            <NewHookForm
-              thisHook={thisHook}
-              setThisHook={setThisHook}
-              hooks={hooks}
-              setHooks={setHooks}
-              setShowInfo={setShowInfo}
-            />
-          )}
-        />
       </div>
     </div>
   );

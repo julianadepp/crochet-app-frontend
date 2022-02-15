@@ -1,25 +1,33 @@
 import React from "react";
+import Flickity from "react-flickity-component";
 import { Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react/cjs/react.development";
+import "../flickity/flickity.css";
 import NewYarnForm from "./NewYarnForm";
 import YarnInfo from "./YarnInfo";
 
-function YarnCollection({yarns, setYarns, showYarnInfo, setShowYarnInfo, hooks}) {
+function YarnCollection({
+  yarns,
+  setYarns,
+  showYarnInfo,
+  setShowYarnInfo,
+  hooks,
+}) {
   const initYarn = {
     id: "",
     nickname: "",
-    weight: '',
-    weight_description: '',
-    brand: '',
-    material: '',
+    weight: "",
+    weight_description: "",
+    brand: "",
+    material: "",
     yarn_image: "",
-    notes: '',
+    notes: "",
     suggested_hooks: [],
   };
   const [thisYarn, setThisYarn] = useState(initYarn);
   const url = process.env.REACT_APP_API;
-    useEffect(() => {
+  useEffect(() => {
     fetch(url + "yarns/")
       .then((res) => res.json())
       .then((json) => {
@@ -36,26 +44,45 @@ function YarnCollection({yarns, setYarns, showYarnInfo, setShowYarnInfo, hooks})
     setShowYarnInfo(true);
     console.log(e.currentTarget.id, "clickedyarn:", thisYarn);
   }
+  const flickityOptions = {
+      wrapAround: true,
+    initialIndex:2,
+    imagesLoaded:true,
+  };
 
   return (
-    <div>
-      <h2>Yarn</h2>
-      {yarns.map((yarn) => {
-        return (
-          <div id={yarn.id} onClick={getId}>
-            <Link to={`/yarns/${yarn.id}`}>
-              <h3>{yarn.nickname}</h3>
-              <img width="100px" src={yarn.yarn_image} alt="yarn"></img>
-              </Link>
-          </div>
-        );
-      })}
+    <div className="bar">
+      <h2 className="barTitle">Yarn</h2>
+      <div className="carousel">
+        <Flickity options={flickityOptions}>
+          {yarns.map((yarn) => {
+            return (
+              <div id={yarn.id} onClick={getId} className="barItem">
+                <Link to={`/yarns/${yarn.id}`}>
+                  <h3 className="barItemTitle">{yarn.nickname}</h3>
+                  <div className="thumbnailWrapper">
+                    <img
+                      className="barThumbnail"
+                      src={yarn.yarn_image}
+                      alt="yarn"
+                    ></img>
+                  </div>
+                </Link>
+              </div>
+            );
+          })}
+        </Flickity>
+      </div>
       <div>
-      {showYarnInfo ? (
+        {showYarnInfo ? (
           <Route
             path="/yarns/:id"
             render={() => (
-              <YarnInfo thisYarn={thisYarn} setThisYarn={setThisYarn}  hooks={hooks} />
+              <YarnInfo
+                thisYarn={thisYarn}
+                setThisYarn={setThisYarn}
+                hooks={hooks}
+              />
             )}
           />
         ) : null}
@@ -68,7 +95,7 @@ function YarnCollection({yarns, setYarns, showYarnInfo, setShowYarnInfo, hooks})
               yarns={yarns}
               setYarns={setYarns}
               setShowYarnInfo={setShowYarnInfo}
-              hooks={hooks} 
+              hooks={hooks}
             />
           )}
         />

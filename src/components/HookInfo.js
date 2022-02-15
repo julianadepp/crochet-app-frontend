@@ -46,13 +46,13 @@ function HookInfo({ setThisHook, thisHook, }) {
   return (
     <div>
       {thisHook.id ? (
-        <div>
+        <div className="details">
           <h2>Hook details...</h2>
           <h3>{thisHook.size_name}</h3>
           <img
             src={thisHook.hook_image}
             alt={thisHook.size_name}
-            width="200px"
+            className="detailsPic"
           ></img>
           <ul>
             {thisHook.yarns.map((yarn) => (
