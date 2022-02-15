@@ -45,9 +45,9 @@ function YarnCollection({
     console.log(e.currentTarget.id, "clickedyarn:", thisYarn);
   }
   const flickityOptions = {
-      wrapAround: true,
-    initialIndex:2,
-    imagesLoaded:true,
+    wrapAround: true,
+    initialIndex: 2,
+    imagesLoaded: true,
   };
 
   return (
