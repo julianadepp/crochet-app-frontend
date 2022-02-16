@@ -10,7 +10,7 @@ function Nav({setShowInfo, setShowYarnInfo, setShowStitchInfo, setShowGaugeInfo 
     }
 
     return (
-        <div>
+        <div className='navDiv'>
             <Link to='/'>Home </Link>
             <Link to='/hooks'>Hooks </Link><Link to='/hooks/new/' onClick={handleClick}>+ </Link>
             <Link to='/yarns'>Yarns </Link><Link to='/yarns/new/' onClick={handleClick}>+ </Link>

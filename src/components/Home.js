@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { Route } from "react-router-dom";
 import "../flickity/flickity.css"
 import GaugeCollection from "./GaugeCollection";
 import HooksCollection from "./HooksCollection";
-import PatternCollection from "./PatternCollection";
 import StitchCollection from "./StitchCollection";
 import YarnCollection from "./YarnCollection";
 
