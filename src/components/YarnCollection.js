@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Flickity from "react-flickity-component";
 import { Route } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 import "../flickity/flickity.css";
 import NewYarnForm from "./NewYarnForm";
 import YarnInfo from "./YarnInfo";
