@@ -113,7 +113,10 @@ function NewHookForm({ setHooks, thisHook, setThisHook, setShowInfo }) {
       .then((res) => {
         const json = res.json();
         if (res.ok) {
-          setErrors({});
+          setErrors({errors: {
+            hook_image: [],
+            size: [],
+          }});
           console.log(json)
           return json;
         } else {
