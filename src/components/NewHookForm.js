@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 const initialHook = {
   hook_image: null,
   size: "",
@@ -73,27 +73,38 @@ function NewHookForm({ setHooks, thisHook, setThisHook, setShowInfo }) {
   const options = {
     method: "POST",
   };
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({errors: {
+    hook_image: [],
+    size: [],
+  }});
   const [hookForm, setHookForm] = useState(initialHook);
-  const [imageFile, setImageFile] = useState({})
-  const [submitted, setSubmitted] = useState(false)
-console.log(submitted, thisHook.id)
+  const [imageFile, setImageFile] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+  console.log(submitted, thisHook.id);
   function handleChange(e) {
-    setHookForm({ ...hookForm, [e.target.name]: e.target.value, /* size_name: e.target.selectedOptions[0].innerText */ });
+    setHookForm({
+      ...hookForm,
+      [e.target.name]:
+        e.target.value /* size_name: e.target.selectedOptions[0].innerText */,
+    });
     console.log(e.target.selectedOptions[0].innerText);
   }
   function handleImage(e) {
     setImageFile({ [e.target.name]: e.target.files[0] });
-    console.log(e.target.files[0]);
+    console.log(imageFile.hook_image);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(imageFile.hook_image)
+    console.log(imageFile.hook_image);
     console.log(hookForm);
     let formdata = new FormData();
-    formdata.append('hook_image', imageFile.hook_image, imageFile.hook_image.name)
-    formdata.append('size', hookForm.size)
+    formdata.append(
+      "hook_image",
+      imageFile.hook_image,
+      imageFile.hook_image.name
+    );
+    formdata.append("size", hookForm.size);
 
     fetch(process.env.REACT_APP_API + url, {
       ...options,
@@ -103,24 +114,29 @@ console.log(submitted, thisHook.id)
         const json = res.json();
         if (res.ok) {
           setErrors({});
+          console.log(json)
           return json;
         } else {
           return json.then((err) => {
             const errors = { errors: err, status: res.status };
             setErrors(errors);
+            console.log(errors)
             return errors;
           });
         }
       })
       .then((json) => {
-        if (!("errors" in json)) {
-            console.log(json.id)
-            setHooks((hooks) => [...hooks, json])
-            setThisHook(json)
-            setShowInfo(true)
-            setSubmitted(true)};
-      }); 
+        if (!('status' in json)) {
+          console.log(json.id);
+          setHooks((hooks) => [...hooks, json]);
+          setThisHook(json);
+          setShowInfo(true);
+          setSubmitted(true);
+        }
+      })
   }
+  console.log(errors)
+
   return (
     <div>
       <h2>Add a New Hook</h2>
@@ -134,7 +150,10 @@ console.log(submitted, thisHook.id)
             name="hook_image"
             id="hook_image"
           ></input>
-        </label>{" "}
+        </label>
+        {(errors.errors.hook_image)?<p>{errors.errors.hook_image[0]}</p>:null}
+        {(errors.errors.size)?<p>{errors.errors.size[0]}</p>:null}
+
         <br />
         <label>
           hook size
@@ -145,7 +164,11 @@ console.log(submitted, thisHook.id)
           </select>
         </label>
         <button>submit</button>
-        {(submitted && thisHook.id !== '')? <Redirect to={`/hooks/${thisHook.id}`} />:<p>press submit to see your new hook!</p>}
+        {submitted && thisHook.id !== "" ? (
+          <Redirect to={`/hooks/${thisHook.id}`} />
+        ) : (
+          <p>press submit to see your new hook!</p>
+        )}
       </form>
     </div>
   );
