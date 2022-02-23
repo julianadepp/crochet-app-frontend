@@ -31,34 +31,37 @@ function App() {
           setShowGaugeInfo={setShowGaugeInfo}
         />
       </div>
+
       <div>
-        <Route
-          exact
-          path="/"
-          render={() => (
-            <Home
-              showInfo={showInfo}
-              setShowInfo={setShowInfo}
-              setShowYarnInfo={setShowYarnInfo}
-              setShowStitchInfo={setShowStitchInfo}
-              setShowGaugeInfo={setShowGaugeInfo}
-              gauges={gauges}
-              setGauges={setGauges}
-              patterns={patterns}
-              setPatterns={setPatterns}
-              hooks={hooks}
-              yarns={yarns}
-              stitches={stitches}
-              setHooks={setHooks}
-              setYarns={setYarns}
-              setStitches={setStitches}
-              showYarnInfo={showYarnInfo}
-              showStitchInfo={showStitchInfo}
-              showGaugeInfo={showGaugeInfo}
-              showPatternInfo={showPatternInfo}
-            />
-          )}
-        />
+        <div>{(hooks!==[])?
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <Home
+                showInfo={showInfo}
+                setShowInfo={setShowInfo}
+                setShowYarnInfo={setShowYarnInfo}
+                setShowStitchInfo={setShowStitchInfo}
+                setShowGaugeInfo={setShowGaugeInfo}
+                gauges={gauges}
+                setGauges={setGauges}
+                patterns={patterns}
+                setPatterns={setPatterns}
+                hooks={hooks}
+                yarns={yarns}
+                stitches={stitches}
+                setHooks={setHooks}
+                setYarns={setYarns}
+                setStitches={setStitches}
+                showYarnInfo={showYarnInfo}
+                showStitchInfo={showStitchInfo}
+                showGaugeInfo={showGaugeInfo}
+                showPatternInfo={showPatternInfo}
+              />
+            )}
+          />:<h2>Gathering Data from Heroku...</h2>}
+        </div>
         <Route
           path="/hooks"
           render={() => (
