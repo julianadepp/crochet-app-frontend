@@ -1,8 +1,8 @@
 # About This Project
 
 This app is designed to help crocheters track the various elements of crochet. Gauges are something a crocheter creates to test the number of stitches they have in a 4” section, and they have 4 main variables: hook, yarn, stitch, and tension. The first 3 are provided in a pattern, but tension will vary based on the person and is not tangible in the same way. For this reason, typically one would create a new gauge for every single project, which is time consuming. The goal of this is to be able to reference old gauges based on the other 3 factors, because inevitably they would repeat in different patterns, and since they are tied to individuals’ accounts, tension should also be consistent, making them reusable. Additionally, it would be a helpful tool to simply track various materials and outcomes.  
-backend code accessible ![here](https://github.com/julianadepp/crochet)
-app accessible ![here](https://julianadepp.github.io/crochet-app-frontend/#/)
+backend code accessible [here](https://github.com/julianadepp/crochet)
+app accessible [here](https://julianadepp.github.io/crochet-app-frontend/#/)
 ## Tech
 
 - React.js
