@@ -20,6 +20,8 @@ app accessible [here](https://julianadepp.github.io/crochet-app-frontend/#/)
 - loading screen while backend (hosted on heroku free version) loads up data
 
 ## Future Goals
+
+- DRY up the code! possibly create and implement more generic custom hook to use across categories, as currently there is obviously lots of repetition.
 - improved instructions regarding requirements in Create and Update components
 - include Patterns components 
 - continued CSS tweaks to move toward wireframe goal 

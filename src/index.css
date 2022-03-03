@@ -15,6 +15,20 @@ code {
 .nav {
   display: block;
 }
+.navDiv{
+background-color: #6C757D;
+font-size: 30px;
+}
+
+a {
+  color: #dee2e6;
+  text-decoration: none;
+}
+a:hover {
+  color: #dee2e6;
+  text-decoration: none;
+  cursor: pointer;
+}
 
 .body {
   display: flex;
