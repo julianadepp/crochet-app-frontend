@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+# About This Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This app is designed to help crocheters track the various elements of crochet. Gauges are something a crocheter creates to test the number of stitches they have in a 4” section, and they have 4 main variables: hook, yarn, stitch, and tension. The first 3 are provided in a pattern, but tension will vary based on the person and is not tangible in the same way. For this reason, typically one would create a new gauge for every single project, which is time consuming. The goal of this is to be able to reference old gauges based on the other 3 factors, because inevitably they would repeat in different patterns, and since they are tied to individuals’ accounts, tension should also be consistent, making them reusable. Additionally, it would be a helpful tool to simply track various materials and outcomes.  
+backend code accessible ![here](https://github.com/julianadepp/crochet)
+app accessible ![here](https://julianadepp.github.io/crochet-app-frontend/#/)
+## Tech
 
-## Available Scripts
+- React.js
+- AWS S3
+- CSS
+- Flickity library (Javascript and CSS)
+- react-router
+- deployed with gh-pages 
 
-In the project directory, you can run:
+## Current Works in Progress
 
-### `npm start`
+- setting up accounts and linking it to frontend
+- giving each category full functionality. The pieces are there but need to be applied for full CRUD
+- CSS and flickity adjustments so selected items are properly highlighted in carousel; flex box adjustments so detail view is consistent
+- loading screen while backend (hosted on heroku free version) loads up data
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Future Goals
+- improved instructions regarding requirements in Create and Update components
+- include Patterns components 
+- continued CSS tweaks to move toward wireframe goal 
+- create option for image from online OR uploaded from computer
+- add starter tutorial
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Wireframes
+![home page view](./markdownImages/98d95200-752d-11ec-94a8-9ec8adf526c6.png)
+![sample detail view](./markdownImages/bad2d480-752d-11ec-9bab-4a3ad434bbcf.png)
+![create view](./markdownImages/d938d000-752d-11ec-94fa-c5a86f9112e2.png)
+![possible update view](./markdownImages/c9b98700-752d-11ec-8dbb-6ba09417ba93.png)
+![update view](./markdownImages/eb1a7300-752d-11ec-9301-4525f2fc876e.png)
